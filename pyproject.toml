@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shogi-kifu-analyzer"
+version = "0.1.0"
+description = "将棋の棋譜(KIF/CSA形式)を解析するツール"
+requires-python = ">=3.9"
+
+[project.scripts]
+shogi-kifu-analyzer = "shogi_kifu_analyzer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["shogi_kifu_analyzer*"]
