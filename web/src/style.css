@@ -1,0 +1,71 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: #222;
+}
+
+.sub {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 44px);
+  grid-template-rows: repeat(9, 44px);
+  border: 2px solid #5a3d1f;
+  width: max-content;
+  background: #f0c987;
+}
+
+.square {
+  border: 1px solid #a07a4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.piece {
+  font-size: 20px;
+  font-weight: bold;
+  color: #111;
+}
+
+.piece.gote {
+  transform: rotate(180deg);
+  color: #7a1f1f;
+}
+
+textarea {
+  width: 100%;
+  font-family: monospace;
+  margin: 0.5rem 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+button {
+  padding: 0.4rem 0.8rem;
+}
+
+#status {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+#log {
+  background: #111;
+  color: #ddd;
+  padding: 0.75rem;
+  height: 200px;
+  overflow-y: auto;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
