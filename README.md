@@ -64,9 +64,13 @@ pytest
 - 駒落ち（ハンディキャップ戦）は主要なパターンのみ簡易対応しています。
 - 詰み判定や形勢評価（AIによる評価値）は含まれません。より高度な評価が必要な場合は、USI対応エンジン（やねうら王など）との連携を別途検討してください。
 
-## web/ — 将棋エンジン(WASM)デモ
+## web/ — ブラウザ内でエンジンと対局できるデモ
 
-`web/` に、やねうら王のWebAssembly版をブラウザ内で動かし、局面(SFEN)から最善手・評価値を求める最小デモがあります。
+`web/` に、やねうら王のWebAssembly版をブラウザ内で動かし、実際に駒を動かして対局できるデモがあります。
+
+- 盤面UI: [shogiground](https://github.com/WandererXII/shogiground)（lishogi.orgで使われている標準的な将棋盤UI）
+- ルール処理（合法手生成・成り・詰み判定など）: [shogiops](https://github.com/WandererXII/shogiops)
+- 思考エンジン: やねうら王 WebAssembly版（Web Worker上で動作）
 
 ```bash
 cd web
@@ -74,7 +78,8 @@ npm install   # postinstallでエンジンファイルを public/engine/ にコ�
 npm run dev
 ```
 
-- サーバー不要（ブラウザ内で探索が完結）
+- サーバー不要（ブラウザ内で探索・対局が完結）
 - COOP/COEPヘッダーが必須（マルチスレッド実行のため。`vite.config.ts` で設定済み）
 - 同梱の評価関数は軽量版のため、本番投入時はより強い評価関数への差し替えを検討してください
-- ライセンス: やねうら王・shogigroundともにGPL-3.0系です。公開サービスにする場合はソースコード公開義務に注意してください
+- 盤・駒の画像は `public/theme/`（shogigroundの標準テーマ）を使用。詳細は `public/theme/NOTICE.md` を参照
+- ライセンス: やねうら王・shogiground・shogiopsはいずれもGPL-3.0系です。公開サービスにする場合はソースコード公開義務に注意してください

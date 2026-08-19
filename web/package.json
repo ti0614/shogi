@@ -14,6 +14,8 @@
     "vite": "^8.2.0"
   },
   "dependencies": {
+    "shogiground": "^0.10.3",
+    "shogiops": "^0.21.0",
     "yaneuraou.wasm": "^0.1.2"
   }
 }

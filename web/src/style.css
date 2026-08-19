@@ -1,6 +1,6 @@
 body {
   font-family: system-ui, sans-serif;
-  max-width: 640px;
+  max-width: 760px;
   margin: 2rem auto;
   padding: 0 1rem;
   color: #222;
@@ -8,47 +8,34 @@ body {
 
 .sub {
   color: #555;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-.board {
-  display: grid;
-  grid-template-columns: repeat(9, 44px);
-  grid-template-rows: repeat(9, 44px);
-  border: 2px solid #5a3d1f;
-  width: max-content;
-  background: #f0c987;
-}
-
-.square {
-  border: 1px solid #a07a4a;
+.wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
 
-.piece {
-  font-size: 20px;
-  font-weight: bold;
-  color: #111;
+.main-board {
+  width: 480px;
+  height: calc(480px / 11 * 12);
 }
 
-.piece.gote {
-  transform: rotate(180deg);
-  color: #7a1f1f;
-}
-
-textarea {
+.sg-wrap {
   width: 100%;
-  font-family: monospace;
-  margin: 0.5rem 0;
+  height: 100%;
+}
+
+.sg-hand-wrap {
+  width: 90px;
 }
 
 .controls {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
 
 button {
@@ -56,16 +43,7 @@ button {
 }
 
 #status {
-  color: #555;
-  font-size: 0.9rem;
-}
-
-#log {
-  background: #111;
-  color: #ddd;
-  padding: 0.75rem;
-  height: 200px;
-  overflow-y: auto;
-  font-size: 12px;
-  white-space: pre-wrap;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
