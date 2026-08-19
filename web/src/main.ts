@@ -47,7 +47,7 @@ const handBottomEl = document.querySelector<HTMLDivElement>("#hand-bottom")!;
 const statusEl = document.querySelector<HTMLSpanElement>("#status")!;
 const resetBtn = document.querySelector<HTMLButtonElement>("#resetBtn")!;
 
-const engine = new Engine("/engine/engine-worker.js");
+const engine = new Engine(`${import.meta.env.BASE_URL}engine/engine-worker.js`);
 
 let pos: Shogi = createInitialPosition();
 let gameOver = false;

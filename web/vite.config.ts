@@ -8,6 +8,9 @@ const crossOriginIsolationHeaders = {
 };
 
 export default defineConfig({
+  // GitHub Pagesは https://<owner>.github.io/<repo>/ というサブパス配信になるため、
+  // GITHUB_PAGES=true のビルド時のみベースパスをリポジトリ名にする。
+  base: process.env.GITHUB_PAGES ? "/shogi/" : "/",
   server: { headers: crossOriginIsolationHeaders },
   preview: { headers: crossOriginIsolationHeaders },
 });

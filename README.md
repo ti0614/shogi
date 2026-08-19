@@ -79,7 +79,20 @@ npm run dev
 ```
 
 - サーバー不要（ブラウザ内で探索・対局が完結）
-- COOP/COEPヘッダーが必須（マルチスレッド実行のため。`vite.config.ts` で設定済み）
+- COOP/COEPヘッダーが必須（マルチスレッド実行のため）
 - 同梱の評価関数は軽量版のため、本番投入時はより強い評価関数への差し替えを検討してください
 - 盤・駒の画像は `public/theme/`（shogigroundの標準テーマ）を使用。詳細は `public/theme/NOTICE.md` を参照
 - ライセンス: やねうら王・shogiground・shogiopsはいずれもGPL-3.0系です。公開サービスにする場合はソースコード公開義務に注意してください
+
+### 公開先について（Claude Artifact / GitHub Pages）
+
+このデモはマルチスレッド実行のため`SharedArrayBuffer`が必須で、それには`Cross-Origin-Opener-Policy`/`Cross-Origin-Embedder-Policy`ヘッダーが必要です。
+
+- **Claude Artifact**: ヘッダーを外部から設定できないため**動作しません**（実機検証済み）。
+- **GitHub Pages（素）**: 同様にヘッダーを設定できないため動きません。
+- **GitHub Pages + coi-serviceworker**: 採用している方式です。[coi-serviceworker](https://github.com/gzuidhof/coi-serviceworker)（MIT License）というService Workerが、ページ読み込み時にクライアント側でCOOP/COEPヘッダーを擬似的に付与し、`crossOriginIsolated`を有効化します。初回アクセス時のみ有効化のための自動リロードが1回入ります。`index.html` から読み込んでいます（`public/coi-serviceworker.js`）。
+- **Netlify/Vercel/Cloudflare Pages**: レスポンスヘッダーを設定できるホスティング先なら、coi-serviceworkerなしでも素直に動きます。
+
+### GitHub Pagesへのデプロイ
+
+`.github/workflows/deploy-web.yml` により、`main`ブランチへの`web/`配下の変更をトリガーにGitHub Pagesへ自動デプロイされます。利用するには、リポジトリの Settings → Pages → Source を「GitHub Actions」に設定してください。デプロイ先は `https://<owner>.github.io/shogi/` です（`vite.config.ts` の `base` をリポジトリ名に合わせています）。
